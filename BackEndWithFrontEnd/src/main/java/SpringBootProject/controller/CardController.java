@@ -37,6 +37,5 @@ public class CardController {
 	public Card getById(@PathVariable int cardId ) {
 		return cardRepository.findById(cardId).get();
 	}
-	
-
+  
 }

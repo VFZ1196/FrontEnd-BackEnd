@@ -1,6 +1,9 @@
 package SpringBootProject.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,5 +26,11 @@ public class DetailsController {
 	public CardDetails add(@RequestBody CardDetails details) {
 		return detailsRepository.save(details);
 	}
+	
+	@GetMapping("/details")
+	public List<CardDetails> getAll() {
+		return detailsRepository.findAll();
+	}
+	
 
 }

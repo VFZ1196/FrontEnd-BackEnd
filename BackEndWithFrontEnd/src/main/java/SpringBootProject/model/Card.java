@@ -21,6 +21,7 @@ public class Card {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int cardId;
+	private String cardHolderName;
 	private long accountNumber;
 	private float amount;
 	
@@ -33,8 +34,10 @@ public class Card {
 	public Card() {
 		
 	}
-	public Card(long accountNumber, float amount, Set<CardDetails> details) {
+
+	public Card(String cardHolderName, long accountNumber, float amount, Set<CardDetails> details) {
 		super();
+		this.cardHolderName = cardHolderName;
 		this.accountNumber = accountNumber;
 		this.amount = amount;
 		this.details = details;
@@ -46,6 +49,14 @@ public class Card {
 
 	public void setCardId(int cardId) {
 		this.cardId = cardId;
+	}
+
+	public String getCardHolderName() {
+		return cardHolderName;
+	}
+
+	public void setCardHolderName(String cardHolderName) {
+		this.cardHolderName = cardHolderName;
 	}
 
 	public long getAccountNumber() {
@@ -71,5 +82,5 @@ public class Card {
 	public void setDetails(Set<CardDetails> details) {
 		this.details = details;
 	}
-
+	
 }

@@ -10,5 +10,7 @@ public class DetailsService {
 	
 	@Autowired
 	public DetailsRepository detailsRepository;
+	
+	
 
 }
