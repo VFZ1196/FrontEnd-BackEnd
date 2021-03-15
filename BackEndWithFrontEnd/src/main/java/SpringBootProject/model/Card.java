@@ -83,4 +83,5 @@ public class Card {
 		this.details = details;
 	}
 	
+	
 }
