@@ -1,10 +1,12 @@
 package SpringBootProject.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import SpringBootProject.model.Card;
 import SpringBootProject.repository.CardRepository;
-import SpringBootProject.repository.DetailsRepository;
 
 @Service
 public class CardService {
@@ -12,7 +14,32 @@ public class CardService {
 	@Autowired
 	public CardRepository cardRepository;
 
-	@Autowired
-	DetailsRepository detailsRepository;
+	public ResponseEntity<Card> validateotp(int cardId, Integer number) {
+		Card card = cardRepository.findById(cardId).get();
+		if (number.equals(card.getOtp())) {
+			System.out.println("Otp Validated");
+		} else {
+			System.out.println("Something wrong");;
+		}
+		return null;
+	}
+
+	public ResponseEntity<Card> validateCard(int cardId, String cardHolderName, Long accountNumber, Long cardNumber,
+			Integer cvv, String expiryDate) {
+
+		Card card = cardRepository.findById(cardId).get();
+
+		if (cardHolderName.equals(card.getCardHolderName()) && accountNumber.equals(card.getAccountNumber())
+				&& cardNumber.equals(card.getCardNumber()) && cvv.equals(card.getCvv())
+				&& expiryDate.equals(card.getExpiryDate())) {
+
+			System.out.println("OTP sent on your mobile");
+			
+		} else {
+			System.out.println("Bad Credentials");
+		}
+
+		return null;
+	}
 
 }

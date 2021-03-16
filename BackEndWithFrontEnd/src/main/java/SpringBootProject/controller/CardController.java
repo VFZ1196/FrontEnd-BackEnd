@@ -1,7 +1,6 @@
 package SpringBootProject.controller;
 
 import java.util.List;
-import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,49 +16,44 @@ import SpringBootProject.service.CardService;
 
 @RestController
 public class CardController {
-	
-	Random random = new Random();
-	public static double getRandomNumber(double min, double max) {
-		double r = (int)(Math.random()*(max-min+1)+min);
-		return r;
-	}
-	
+
 	@Autowired
 	public CardRepository cardRepository;
-	
+
 	@Autowired
 	public CardService cardService;
-	
-	
+
+	// Add record
 	@PostMapping("/card")
 	public Card add(@RequestBody Card card) {
 		return cardRepository.save(card);
 	}
- 	
+
+	// Get All record
 	@GetMapping("/card")
 	public List<Card> getAll() {
 		return cardRepository.findAll();
 	}
-	
+
+	// Get record By Id
 	@GetMapping("/card/{cardId}")
-	public Card getById(@PathVariable int cardId ) {
+	public Card getById(@PathVariable int cardId) {
 		return cardRepository.findById(cardId).get();
 	}
-  
-	@GetMapping("/cardValidation/{cardId}")
-	public ResponseEntity<Card> cardValidation(@PathVariable int cardId){
-		Card card = cardRepository.findById(cardId).get();
-		System.out.println(card);
-		return null;
+
+	// Validate otp
+	@GetMapping("/validateotp/{cardId}/{number}")
+	public ResponseEntity<Card> validateotp(@PathVariable int cardId, @PathVariable int number) throws Exception {
+		return cardService.validateotp(cardId, number);
 	}
-	
-	@PostMapping("/otp")
-	public ResponseEntity<Card> enterOtp(){
-		
-		int otpNumber = (int) getRandomNumber(1000,4000);
-		System.out.println(otpNumber);
-		
-		return null;
-		
+
+	// Validate Card
+	@PostMapping("/validatecard/{cardId}/{cardHolderName}/{accountNumber}/{cardNumber}/{cvv}/{expiryDate}")
+	public ResponseEntity<Card> validateCard(@PathVariable int cardId, @PathVariable String cardHolderName,
+			@PathVariable Long accountNumber, @PathVariable Long cardNumber,
+			@PathVariable Integer cvv, @PathVariable String expiryDate) {
+		return cardService.validateCard(cardId, cardHolderName, accountNumber, cardNumber, cvv,expiryDate);
+
 	}
+
 }
