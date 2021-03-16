@@ -18,7 +18,7 @@ public class CardService {
 		if (number.equals(card.getOtp())) {
 			System.out.println("Otp Validated");
 		} else {
-			System.out.println("Something wrong");;
+			System.out.println("Something wrong");
 		}
 		return null;
 	}

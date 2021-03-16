@@ -55,17 +55,5 @@ public class CardController {
 		return cardService.validateCard(cardId, cardHolderName, accountNumber, cardNumber, cvv,expiryDate);
 
 	}
-	
-	@PostMapping("/datevalidation/{cardId}/{expiryDate}")
-	public Card datevalidate(@PathVariable int cardId,@PathVariable String expiryDate) {
-		Card card =  cardRepository.findById(cardId).get();
-		System.out.println(card.getExpiryDate());
-		if(expiryDate.equals(card.getExpiryDate())) {
-			System.out.println("date matched");
-		}else {
-			System.out.println("Not Matched");
-		}
-		return null;
-	}
   
 }
