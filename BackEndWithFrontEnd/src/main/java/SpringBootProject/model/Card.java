@@ -8,17 +8,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name="card")
+@Table(name = "card")
 public class Card {
-	
+
 	Random random = new Random();
 
 	public static double getRandomNumber(double min, double max) {
-		double r = (int)(Math.random()*(max-min+1)+min);
+		double r = (int) (Math.random() * (max - min + 1) + min);
 		return r;
 	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int cardId;
@@ -28,10 +28,10 @@ public class Card {
 	private long cardNumber;
 	private int cvv;
 	private String expiryDate;
-	private int otp = (int) getRandomNumber(1000,2000);
+	private int otp = (int) getRandomNumber(1000, 2000);
 
 	public Card() {
-		
+
 	}
 
 	public Card(Random random, String cardHolderName, long accountNumber, float amount, long cardNumber, int cvv,
