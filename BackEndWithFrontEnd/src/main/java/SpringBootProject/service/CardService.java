@@ -1,5 +1,7 @@
 package SpringBootProject.service;
 
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -9,6 +11,16 @@ import SpringBootProject.repository.CardRepository;
 
 @Service
 public class CardService {
+	
+	Random random = new Random();
+
+	public static double getRandomNumber(double min, double max) {
+		double r = (int)(Math.random()*(max-min+1)+min);
+		return r;
+	}
+	
+	private int otpNumber = (int) getRandomNumber(1000,2000);
+
 
 	@Autowired
 	public CardRepository cardRepository;
@@ -32,7 +44,8 @@ public class CardService {
 				&& cardNumber.equals(card.getCardNumber()) && cvv.equals(card.getCvv())
 				&& expiryDate.equals(card.getExpiryDate())) {
 
-			System.out.println("Validated");
+			System.out.println("Card validation successful");
+			System.out.println("Genrated otp after card validation -> " + otpNumber);
 			
 		} else {
 			System.out.println("Bad Credentials");
