@@ -50,10 +50,22 @@ public class CardController {
 	// Validate Card
 	@PostMapping("/validatecard/{cardId}/{cardHolderName}/{accountNumber}/{cardNumber}/{cvv}/{expiryDate}")
 	public ResponseEntity<Card> validateCard(@PathVariable int cardId, @PathVariable String cardHolderName,
-			@PathVariable Long accountNumber, @PathVariable Long cardNumber,
-			@PathVariable Integer cvv, @PathVariable String expiryDate) {
+			@PathVariable long accountNumber, @PathVariable long cardNumber,
+			@PathVariable int cvv, @PathVariable String expiryDate) {
 		return cardService.validateCard(cardId, cardHolderName, accountNumber, cardNumber, cvv,expiryDate);
 
 	}
-
+	
+	@PostMapping("/datevalidation/{cardId}/{expiryDate}")
+	public Card datevalidate(@PathVariable int cardId,@PathVariable String expiryDate) {
+		Card card =  cardRepository.findById(cardId).get();
+		System.out.println(card.getExpiryDate());
+		if(expiryDate.equals(card.getExpiryDate())) {
+			System.out.println("date matched");
+		}else {
+			System.out.println("Not Matched");
+		}
+		return null;
+	}
+  
 }

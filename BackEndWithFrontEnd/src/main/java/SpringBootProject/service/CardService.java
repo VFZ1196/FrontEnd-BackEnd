@@ -1,7 +1,6 @@
 package SpringBootProject.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +23,7 @@ public class CardService {
 		return null;
 	}
 
-	public ResponseEntity<Card> validateCard(int cardId, String cardHolderName, Long accountNumber, Long cardNumber,
+	public ResponseEntity<Card> validateCard(Integer cardId, String cardHolderName, Long accountNumber, Long cardNumber,
 			Integer cvv, String expiryDate) {
 
 		Card card = cardRepository.findById(cardId).get();
@@ -33,7 +32,7 @@ public class CardService {
 				&& cardNumber.equals(card.getCardNumber()) && cvv.equals(card.getCvv())
 				&& expiryDate.equals(card.getExpiryDate())) {
 
-			System.out.println("OTP sent on your mobile");
+			System.out.println("Validated");
 			
 		} else {
 			System.out.println("Bad Credentials");
