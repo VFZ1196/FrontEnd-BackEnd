@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 
@@ -49,13 +49,14 @@ flex:15%;
   -ms-flex: 75%; 
   flex: 75%;
 }
-
 .col-15,
 .col-25,
 .col-50,
 .col-75 {
   padding: 0 16px;
 }
+
+.hidden { display:none; }
 
 .container {
   background-color: #f2f2f2;
@@ -67,7 +68,7 @@ flex:15%;
 /* input form width */
 
 input[type=text] {
-  width: 50%;
+  width: 70%;
   margin-bottom: 10px;
   padding: 12px;
   border: 1px solid #ccc;
@@ -111,8 +112,9 @@ label {
   border-radius: 3px;
   cursor: pointer;
   font-size: 15px;
-
+  transition: width 2s, height 4s;
 }
+
 .btnt .tiptext {
   visibility: hidden;
   width: 120px;
@@ -131,6 +133,7 @@ label {
   visibility: visible;
 }
 .tabcontent {
+  
   color: Black (10, 7, 7);
   display: none;
   padding: 100px 20px;
@@ -158,7 +161,23 @@ hr {
   }
 
 }
+ .modal { 
+  font-size: 14px;
+  position:fixed;
 
+  /* position:absolute;  */
+
+} 
+
+/* .pageCover { 
+  position:fixed; 
+  z-index:10; 
+  background-color:rgba(0,0,0,.25); 
+  width:100vw; 
+  height:100vh; 
+  top:0; 
+  left:0;
+} */
 </style>
 </head>
 
@@ -166,16 +185,17 @@ hr {
 <h2>Checkout Form</h2>
 
   <h3>Please Click to Proceed</h3>
-
+  
    <button type="button" class="btnt" data-toggle="modal" data-target="#myModal">
     <span class="tiptext">Proceed to Payment</span></button>
      <div class="modal fade" id="myModal" role="dialog" >
-      
+      <!-- <div class="hidden pageCover"></div>  -->
     
-    <div class="modal-dialog" style="max-width:100%;" style="max-height: 50%;" role="document">
+    <div class="modal-dialog" style="max-width:30%;" style="max-height: 50%;" role="document;"  >
 
       <div class="modal-content">
-    
+        <!-- <div class="hidden body"> -->
+
             <!-- <h3>Payment</h3> -->
             <div class="modal-header">
             <label for="fname">All Cards are Accepted</label>
@@ -185,7 +205,7 @@ hr {
               <i class="fa fa-cc-mastercard" style="color:red;"></i>
               <i class="fa fa-cc-discover" style="color:orange;"></i>
             </div>
-          
+
           <div class="modal-body">
 
             <label for="cname">Name on Card</label>
@@ -196,7 +216,7 @@ hr {
             <div class="col-15">
             <label for="expmonth">Exp Month</label>
             
-            <select id="expmonth" name="expmonth" onchange="show_month()" style="width:90%;float:right;margin-left:15px;margin-right:15px;"></input>
+            <select id="expmonth" name="expmonth" onchange="show_month()" style="width:110%; height:35%; float:right; margin-left:15px; margin-right:10px;"></input>
     
                 <!-- <select id='expmonth' onchange="show_month()"> -->
                 <!-- <option value=''>--Select Month--</option> -->
@@ -217,11 +237,11 @@ hr {
 
               <div class="col-15">
                 <label for="expyear">Exp Year</label>
-                <input type="text" maxlength="4" id="expyear" name="expyear" placeholder="2020" style="width:45%; height:20%;">
+                <input type="text" maxlength="4" id="expyear" name="expyear" placeholder="2020" style="width:90%; height:40%;">
               </div>
               <div class="col-15">
                 <label for="cvv">CVV</label>
-                <input type="text" id="cvv" name="cvv" placeholder="352" style="width:45%; height:25%;" >
+                <input type="text" id="cvv" name="cvv" placeholder="352" style="width:80%; height:40%;" >
               </div>
             </div>
 
@@ -232,9 +252,10 @@ hr {
       </form>
       </div>
     </div>
-    </div>
+    </div> 
     </div>
   </div>
+</div>
 
   <!-- this is for Hyphen in card number -->
   <script>
