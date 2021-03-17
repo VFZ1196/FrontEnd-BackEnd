@@ -50,10 +50,9 @@ public class CardController {
 	}
 
 	// Validate Card
-	@PostMapping("/validatecard/{cardId}/{cardHolderName}/{cardNumber}/{cvv}/{expiryDate}")
-	public ResponseEntity<Card> validateCard(@PathVariable int cardId, @PathVariable String cardHolderName,
-			@PathVariable long cardNumber, @PathVariable int cvv, @PathVariable String expiryDate) {
-		return cardService.validateCard(cardId, cardHolderName, cardNumber, cvv, expiryDate);
+	@PostMapping("/validatecard/{cardId}")
+	public ResponseEntity<Card> validateCard(@PathVariable int cardId,@RequestBody Card card) {
+		return cardService.validateCard(cardId,card);
 
 	}
 
