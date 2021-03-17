@@ -34,7 +34,7 @@ public class CardService {
 		}
 		return null;
 	}
-
+ 
 	// Card Validation
 	public ResponseEntity<Card> validateCard(Integer cardId, String cardHolderName, Long cardNumber, Integer cvv,
 			String expiryDate) {
@@ -43,6 +43,7 @@ public class CardService {
 
 		if (cardHolderName.equals(card.getCardHolderName()) && cardNumber.equals(card.getCardNumber())
 				&& cvv.equals(card.getCvv()) && expiryDate.equals(card.getExpiryDate())) {
+			
 
 			System.out.println("Card validation successful");
 			System.out.println("Genrated otp after card validation -> " + otpNumber);
