@@ -36,14 +36,12 @@ public class CardService {
 	}
  
 	// Card Validation
-	public ResponseEntity<Card> validateCard(Integer cardId, String cardHolderName, Long cardNumber, Integer cvv,
-			String expiryDate) {
+	public ResponseEntity<Card> validateCard(Integer cardId, Card card) {
 
-		Card card = cardRepository.findById(cardId).get();
+		Card car = cardRepository.findById(cardId).get();
 
-		if (cardHolderName.equals(card.getCardHolderName()) && cardNumber.equals(card.getCardNumber())
-				&& cvv.equals(card.getCvv()) && expiryDate.equals(card.getExpiryDate())) {
-			
+		if(card.getCardHolderName().equals(car.getCardHolderName()) && card.getCardNumber()==(car.getCardNumber())
+				&& card.getCvv()==(car.getCvv()) && card.getExpiryDate().equals(car.getExpiryDate())) {
 
 			System.out.println("Card validation successful");
 			System.out.println("Genrated otp after card validation -> " + otpNumber);
@@ -54,5 +52,6 @@ public class CardService {
 
 		return null;
 	}
+	
 
 }
