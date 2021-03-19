@@ -13,6 +13,10 @@
 <style>
 
 body {
+  /* position: absolute; */
+  /* top: 0px;
+  left: 0px;         
+  z-index: 99; */
   position:fixed;
   font-family: Arial;
   font-size: 18px;
@@ -21,6 +25,7 @@ body {
 
 * {
   box-sizing: border-box;
+  
 }
 
 .row {
@@ -174,6 +179,8 @@ hr {
  .modal { 
   font-size: 14px;
   position:fixed;
+  width:500px;
+  height:5000px;
   /* display: flex; */
 
   /* position:absolute;  */
@@ -196,24 +203,52 @@ hr {
 	padding-left: 10px;
 }
 
+.fade
+ {
+ position: absolute;
+ top: 0px;
+ left: 30px;
+ width:1300px;
+ height: 1300px;
+ /* bottom:100px;
+ right:100*100; */
+ z-index: 99;
+ background: black;
+}
+        
 </style>
 </head>
 <body>
+
+  <form id="Form1" runat="server">
+  <div id="fade" class="fade">
+  </div>
+
+
 <h2>Checkout Form <i class="fa fa-shopping-cart"></i></h2>
 <!-- <i class="fa fa-credit-card"></i> -->
 <!-- <i class="fa fa-credit-card" style="font-size:30px;"></i> -->
-  <h3>Please Click to Proceed </h3>
+  <h3> Proceed to Payment </h3>
   
-   <button type="button" class="btnt" data-toggle="modal" data-target="#myModal"><i class="fa fa-credit-card"  style="font-size:30px;"></i>
+   <button type="button" href="#" id="aFoo" class="btnt" data-toggle="modal" data-target="#myModal"><i class="fa fa-credit-card"  style="font-size:30px;"></i>
     <span class="tiptext">Proceed to Payment</span></button>
-     <div class="modal fade" id="myModal" role="dialog" >
+     <div class="modal fade" id="myModal" role="dialog" style="background-color:rgb(5, 6, 7);" >
       <!-- <div class="hidden pageCover"></div>  -->
-    
+     
     <div class="modal-dialog" style="max-width:30%;" style="max-height: 50%;" role="document;"  >
-
       <div class="modal-content">
-        <!-- <div class="hidden body"> -->
 
+        <script type="text/javascript">
+          $('#aFoo').click(function () {
+              var maskHeight = $(document).height();
+              var maskWidth = $(window).width();
+              $('#fade').css({ 'width': maskWidth, 'height': maskHeight })
+              .In(1000).To('slow', 0.7);
+              return modal;
+          });
+      </script>
+
+        <!-- <div class="hidden body"> -->
             <!-- <h3>Payment</h3> -->
             <div class="modal-header">
             <label for="fname">All Cards are Accepted</label>
