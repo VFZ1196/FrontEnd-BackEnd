@@ -122,7 +122,7 @@ label {
   margin: 10px 0;
   border: none;
   width: 15%;
-  height:15;
+  height:15%;
   
   border-radius: 3px;
   cursor: pointer;
@@ -179,8 +179,8 @@ hr {
  .modal { 
   font-size: 14px;
   position:fixed;
-  width:500px;
-  height:5000px;
+  /* width:500px;
+  height:5000px; */
   /* display: flex; */
 
   /* position:absolute;  */
@@ -203,7 +203,7 @@ hr {
 	padding-left: 10px;
 }
 
-.fade
+/* .fade
  {
  position: absolute;
  top: 0px;
@@ -212,17 +212,111 @@ hr {
  height: 1300px;
  /* bottom:100px;
  right:100*100; */
- z-index: 99;
- background: black;
+ /* z-index: 99;
+ background: black; 
+} */
+
+
+.otp{
+background-color:#0e0f0f;
+display: block;
+color: white;
+padding: 2px;
+margin: 10px 0;
+border: none;
+width: 15%;
+height:15%;
+
+border-radius: 3px;
+cursor: pointer;
+font-size: 15px;
+/* transition: width 2s, height 4s; */
 }
-        
+/* .modal1 { 
+  font-size: 14px;
+  position:fixed;
+}  */
+
+
+
+.modal2 {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal2-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal2-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.modal2-body {padding: 2px 16px;}
+
+.modal2-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+
+
 </style>
 </head>
 <body>
 
-  <form id="Form1" runat="server">
+  <!-- <form id="Form1" runat="server">
   <div id="fade" class="fade">
-  </div>
+  </div> -->
 
 
 <h2>Checkout Form <i class="fa fa-shopping-cart"></i></h2>
@@ -230,14 +324,14 @@ hr {
 <!-- <i class="fa fa-credit-card" style="font-size:30px;"></i> -->
   <h3> Proceed to Payment </h3>
   
-   <button type="button" href="#" id="aFoo" class="btnt" data-toggle="modal" data-target="#myModal"><i class="fa fa-credit-card"  style="font-size:30px;"></i>
-    <span class="tiptext">Proceed to Payment</span></button>
+   <button type="button" class="btnt"  data-toggle="modal" data-target="#myModal"><i class="fa fa-credit-card"  style="font-size:30px;"></i>
+    <span class="tiptext">Proceed to Payment</span>  </button>
      <div class="modal fade" id="myModal" role="dialog" style="background-color:rgb(5, 6, 7);" >
       <!-- <div class="hidden pageCover"></div>  -->
      
-    <div class="modal-dialog" style="max-width:30%;" style="max-height: 50%;" role="document;"  >
+    <div a onclick="first();" class="modal-dialog" style="max-width:30%;" style="max-height: 50%;" role="document;"    >
       <div class="modal-content">
-
+<!-- 
         <script type="text/javascript">
           $('#aFoo').click(function () {
               var maskHeight = $(document).height();
@@ -246,12 +340,12 @@ hr {
               .In(1000).To('slow', 0.7);
               return modal;
           });
-      </script>
+      </script> -->
 
         <!-- <div class="hidden body"> -->
             <!-- <h3>Payment</h3> -->
             <div class="modal-header">
-            <label for="fname">All Cards are Accepted</label>
+            <label for="fname"><h3>All Cards are Accepted</h3></label>
             <i class="far fa-credit-card"></i>
             <div class="icon-container">
               <i class="fa fa-cc-visa" style="color:navy;"></i>
@@ -302,17 +396,15 @@ hr {
         <label>
           <input type="checkbox" checked="checked" name="savecard"> Save this card for fututre use
         </label>
-        <input type="submit" value="Continue to checkout" class="btn">
+        <input type="submit" id="foo" value="Continue to checkout" class="btn">
       </form>
       </div>
     </div>
     </div> 
     </div>
   </div>
-</div>
-
-  <!-- this is for Hyphen in card number -->
-  <script>
+   <!-- this is for Hyphen in card number -->
+   <script>
     function addHyphen (element) {
         let ele = document.getElementById(element.id);
           ele = ele.value.split('-').join('');  
@@ -322,6 +414,127 @@ hr {
       }
   </script>
 <!-- ... -->
-
 </body>
-</html>
+
+
+<!-- 
+  <button type="button" class="otp" data-toggle="modal1" data-target="#myModal"><i style="font-size:30px;"></i>
+   
+     <div class="modal fade" id="otp" role="dialog" style="background-color:rgb(5, 6, 7);" >
+       <div class="hidden pageCover"></div> 
+  <div onclick="closePopup();" class="modal1-dialog" style="max-width:30%;" style="max-height: 50%;" role="document;"  id="pagetwo"  >
+    <div class="modal1-content">
+      <label for="otp"><h3>Please Enter the OTP Below</h3></label>
+      <div class="modal1-body"> --> 
+
+        <script type="text/javascript">
+        // Get the button that opens the modal
+        var btn = document.querySelectorAll("button.modal-button");
+        
+        // All page modals
+        var modals = document.querySelectorAll('.modal');
+        
+        // Get the <span> element that closes the modal
+        var spans = document.getElementsByClassName("close");
+        
+        // When the user clicks the button, open the modal
+        for (var i = 0; i < btn.length; i++) {
+         btn[i].onclick = function(e) {
+            e.preventDefault();
+            modal = document.querySelector(e.target.getAttribute("href"));
+            modal.style.display = "block";
+         }
+        }
+        
+        // When the user clicks on <span> (x), close the modal
+        for (var i = 0; i < spans.length; i++) {
+         spans[i].onclick = function() {
+            for (var index in modals) {
+              if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
+            }
+         }
+        }
+        
+        // When the user clicks anywhere outside of the modal,it should hold onto the window
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+             for (var index in modals) {
+              if (typeof modals[index].style !== 'undefined') modals[index].style.display = "hold";    
+             }
+            }
+        }
+</script>
+
+
+
+<!-- Trigger/Open The Modal -->
+<button class="modal-button" href="#myModal1">Open Modal</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">×</span>
+      <h2>Modal Header</h2>
+    </div>
+    <div class="modal-body">
+      <p>Some text in the Modal Body</p>
+      <p>Some other text...</p>
+    </div>
+    <div class="modal-footer">
+      <h3>Modal Footer</h3>
+    </div>
+  </div>
+
+</div>
+
+<!-- Trigger/Open The Modal -->
+<button class="modal2-button" href="#myModal2">Open Modal</button>
+
+<!-- The Modal -->
+<div id="myModal2" class="modal2">
+
+  <!-- Modal content -->
+  <div class="modal2-content">
+    <div class="modal2-header">
+      <span class="close">×</span>
+      <h2>Modal Header</h2>
+    </div>
+    <div class="modal2-body">
+      <p>Some text in the Modal Body</p>
+      <p>Some other text...</p>
+    </div>
+    <div class="modal2-footer">
+      <h3>Modal Footer</h3>
+    </div>
+  </div>
+
+</div>
+       
+        <script type="text/javascript">
+         function AddressPopup() {
+        $('#otp').dialog({
+            title:'please enter otp below',
+            maxWidth: 400,
+            width: 400,
+            height: 500,
+            modal: true,
+            close: function () {
+                var selectedObj = page.object();
+
+                $('#<%= txtADDRESS.ClientID %>').val(selectedObj);
+            }
+        });
+</script>
+
+
+      </div>
+
+      </div>
+     </div> 
+    </div>
+
+  </button>
+</html> 
