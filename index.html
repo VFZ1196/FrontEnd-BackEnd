@@ -237,78 +237,74 @@ font-size: 15px;
   position:fixed;
 }  */
 
-
-
-.modal2 {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+.modal-wrapper {
+    align-items: center;
+    background-color: rgba(100, 100, 100, 0.5);
+    bottom: 0;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100vh;
+    justify-content: center;
     left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    opacity: 0;
+    position: fixed;
+    right: 0;
+    transition: all 0.2s ease-in-out;
+    visibility: hidden;
+    width: 100%;
+    z-index: 1000;
+}
+.modal-wrapper.visible {
+    opacity: 1;
+    visibility: visible;
 }
 
-/* Modal Content */
-.modal2-content {
-    position: relative;
-    background-color: #fefefe;
-    margin: auto;
-    padding: 0;
-    border: 1px solid #888;
-    width: 80%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s
+.modal-window {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    transform: scale(0);
+    transition: 0.2s ease-in-out all;
 }
 
-/* Add Animation */
-@-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
+.modal-wrapper.visible .modal-window {
+    transform: scale(1);
 }
 
-@keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
+.modal-header {
+    align-items: center;
+    border-bottom: 2px solid black;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
 }
 
-/* The Close Button */
-.close {
-    color: white;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
 
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
+.close-modal-button {
+    align-items: center;
     cursor: pointer;
+    display: flex;
+    height: 30px;
+    justify-content: center;
+    width: 30px;
 }
 
-.modal2-header {
-    padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;
+.close-modal-button::before {
+    content: "X";
+    color: rgb(112, 112, 112);
 }
 
-.modal2-body {padding: 2px 16px;}
-
-.modal2-footer {
-    padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;
+.close-modal-button:hover::before {
+    color: black;
 }
 
-
+.modal-trigger, a {
+    color: rgb(10, 47, 255);
+    cursor: pointer;
+    text-decoration: underline;
+}
 
 </style>
 </head>
@@ -368,15 +364,15 @@ font-size: 15px;
     
                 <!-- <select id='expmonth' onchange="show_month()"> -->
                 <!-- <option value=''>--Select Month--</option> -->
-                <option selected value='1'>Janaury</option>
-                <option value='2'>February</option>
-                <option value='3'>March</option>
-                <option value='4'>April</option>
-                <option value='5'>May</option>
-                <option value='6'>June</option>
-                <option value='7'>July</option>
-                <option value='8'>August</option>
-                <option value='9'>September</option>
+                <option selected value='01'>Janaury</option>
+                <option value='02'>February</option>
+                <option value='03'>March</option>
+                <option value='04'>April</option>
+                <option value='05'>May</option>
+                <option value='06'>June</option>
+                <option value='07'>July</option>
+                <option value='08'>August</option>
+                <option value='09'>September</option>
                 <option value='10'>October</option>
                 <option value='11'>November</option>
                 <option value='12'>December</option>
@@ -396,13 +392,23 @@ font-size: 15px;
         <label>
           <input type="checkbox" checked="checked" name="savecard"> Save this card for fututre use
         </label>
-        <input type="submit" id="foo" value="Continue to checkout" class="btn">
+        <input type="submit" id="foo" class="modal-trigger" class="btn" data-modal-id="modal2"><p>"Continue_to_checkout"</p>>
       </form>
       </div>
     </div>
     </div> 
     </div>
   </div>
+
+  <div class="modal-wrapper" id="modal2">
+    <section class="modal-window">
+        <header class="modal-header">
+            <h3>please enter the otp below</h3>
+            <div class="close-modal-button"></div>
+        </header>
+        <p>NA</p>
+    </section>
+</div>
    <!-- this is for Hyphen in card number -->
    <script>
     function addHyphen (element) {
@@ -416,125 +422,4 @@ font-size: 15px;
 <!-- ... -->
 </body>
 
-
-<!-- 
-  <button type="button" class="otp" data-toggle="modal1" data-target="#myModal"><i style="font-size:30px;"></i>
-   
-     <div class="modal fade" id="otp" role="dialog" style="background-color:rgb(5, 6, 7);" >
-       <div class="hidden pageCover"></div> 
-  <div onclick="closePopup();" class="modal1-dialog" style="max-width:30%;" style="max-height: 50%;" role="document;"  id="pagetwo"  >
-    <div class="modal1-content">
-      <label for="otp"><h3>Please Enter the OTP Below</h3></label>
-      <div class="modal1-body"> --> 
-
-        <script type="text/javascript">
-        // Get the button that opens the modal
-        var btn = document.querySelectorAll("button.modal-button");
-        
-        // All page modals
-        var modals = document.querySelectorAll('.modal');
-        
-        // Get the <span> element that closes the modal
-        var spans = document.getElementsByClassName("close");
-        
-        // When the user clicks the button, open the modal
-        for (var i = 0; i < btn.length; i++) {
-         btn[i].onclick = function(e) {
-            e.preventDefault();
-            modal = document.querySelector(e.target.getAttribute("href"));
-            modal.style.display = "block";
-         }
-        }
-        
-        // When the user clicks on <span> (x), close the modal
-        for (var i = 0; i < spans.length; i++) {
-         spans[i].onclick = function() {
-            for (var index in modals) {
-              if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
-            }
-         }
-        }
-        
-        // When the user clicks anywhere outside of the modal,it should hold onto the window
-        window.onclick = function(event) {
-            if (event.target.classList.contains('modal')) {
-             for (var index in modals) {
-              if (typeof modals[index].style !== 'undefined') modals[index].style.display = "hold";    
-             }
-            }
-        }
-</script>
-
-
-
-<!-- Trigger/Open The Modal -->
-<button class="modal-button" href="#myModal1">Open Modal</button>
-
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <div class="modal-header">
-      <span class="close">×</span>
-      <h2>Modal Header</h2>
-    </div>
-    <div class="modal-body">
-      <p>Some text in the Modal Body</p>
-      <p>Some other text...</p>
-    </div>
-    <div class="modal-footer">
-      <h3>Modal Footer</h3>
-    </div>
-  </div>
-
-</div>
-
-<!-- Trigger/Open The Modal -->
-<button class="modal2-button" href="#myModal2">Open Modal</button>
-
-<!-- The Modal -->
-<div id="myModal2" class="modal2">
-
-  <!-- Modal content -->
-  <div class="modal2-content">
-    <div class="modal2-header">
-      <span class="close">×</span>
-      <h2>Modal Header</h2>
-    </div>
-    <div class="modal2-body">
-      <p>Some text in the Modal Body</p>
-      <p>Some other text...</p>
-    </div>
-    <div class="modal2-footer">
-      <h3>Modal Footer</h3>
-    </div>
-  </div>
-
-</div>
-       
-        <script type="text/javascript">
-         function AddressPopup() {
-        $('#otp').dialog({
-            title:'please enter otp below',
-            maxWidth: 400,
-            width: 400,
-            height: 500,
-            modal: true,
-            close: function () {
-                var selectedObj = page.object();
-
-                $('#<%= txtADDRESS.ClientID %>').val(selectedObj);
-            }
-        });
-</script>
-
-
-      </div>
-
-      </div>
-     </div> 
-    </div>
-
-  </button>
 </html> 
