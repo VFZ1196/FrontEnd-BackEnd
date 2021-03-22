@@ -12,6 +12,7 @@ import javax.persistence.Table;
 @Table(name = "card")
 public class Card {
 
+	//Random Number generator
 	Random random = new Random();
 
 	public static double getRandomNumber(double min, double max) {
